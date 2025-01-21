@@ -265,11 +265,21 @@ router.get("/test", async (req, res) => {
   //       res.send(data);
   //     });
   //todo Q-39.  fetch the first 50% records from a table.
-  //   knex("Worker")
-  //     .limit(knex.count("*") / 2)
-  //     .then((data) => {
-  //       res.send(data);
-  //     });
+  // knex
+  //   .raw(
+  //     `
+  //     WITH RankedRecords AS (
+  //         SELECT *, ROW_NUMBER() OVER (ORDER BY WORKER_ID) AS rnk
+  //         FROM Worker
+  //     )
+  //     SELECT *
+  //     FROM RankedRecords
+  //     WHERE rnk <= (SELECT COUNT(*) / 2 FROM Worker);
+  //   `
+  //   )
+  //   .then((data) => {
+  //     res.send(data[0]);
+  //   });
   //? Q-40. fetch the departments that have less than 4 people in it
   //   knex
   //     .from(
