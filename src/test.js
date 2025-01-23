@@ -10,23 +10,28 @@ router.get("/test", async (req, res) => {
   //     .then((data) => {
   //       res.send(data);
   //     });
+  //*          |-----SQL------|
+  //SELECT FIRST_NAME AS WORKER_NAME FROM Worker
   //   //?Q2 fetch “FIRST_NAME” from Worker table in upper case
   //   knex
   //     .raw(`select UPPER(FIRST_NAME) as WORKER_NAME  from Worker `)
   //     .then((data) => {
   //       res.send(data[0]);
   //     });
+  //*          |-----SQL------|
   // //?Q3 fetch unique values of DEPARTMENT from Worker table
   //   knex("Worker")
   //     .select("DEPARTMENT")
   //     .groupBy("DEPARTMENT")
   //     .then((data) => res.send(data));
+  //*          |-----SQL------|
   //?Q4 print the first three characters of  FIRST_NAME from Worker table
   //   knex
   //     .raw(`select SUBSTRING(FIRST_NAME,1,3) as WORKER_NAME  from Worker `)
   //     .then((data) => {
   //       res.send(data[0]);
   //     });
+  //*          |-----SQL------|
   //?Q5 find the position of the alphabet (‘b’) in the first name column ‘Amitabh’ from Worker table.
   //   knex("Worker")
   //     .select(knex.raw("POSITION('b' IN FIRST_NAME )as 'position'"))
@@ -34,6 +39,7 @@ router.get("/test", async (req, res) => {
   //     .then((data) => {
   //       res.send(data[0]);
   //     });
+  //*          |-----SQL------|
   //?Q6 FIRST_NAME from Worker table after removing white spaces from the right side.
   //   knex("Worker")
   //     .select(knex.raw("RTRIM(FIRST_NAME)"))
@@ -46,23 +52,28 @@ router.get("/test", async (req, res) => {
   //     .then((data) => {
   //       res.send(data);
   //     });
+  //*          |-----SQL------|
   //?Q8 fetches the unique values of DEPARTMENT from Worker table and prints its length.
   //   knex("Worker")
   //     .select(knex.raw("LENGTH(DEPARTMENT)"))
   //     .groupBy("DEPARTMENT")
   //     .then((data) => res.send(data));
+  //*          |-----SQL------|
   //?Q9 FIRST_NAME from Worker table after replacing ‘a’ with ‘A’.
   //   knex("Worker")
   //     .select(knex.raw("REPLACE(FIRST_NAME , 'a','A')"))
   //     .then((data) => res.send(data));
+  //*          |-----SQL------|
   //?Q10 FIRST_NAME and LAST_NAME from Worker table into a single column COMPLETE_NAME.
   //   knex("Worker")
   //     .select(knex.raw("CONCAT(FIRST_NAME,' ' ,LAST_NAME)as COMPLETE_NAME"))
   //     .then((data) => res.send(data));
+  //*          |-----SQL------|
   //?Q11 print all Worker details from the Worker table order by FIRST_NAME Ascending.
   //   knex("Worker")
   //     .orderBy("FIRST_NAME")
   //     .then((data) => res.send(data));
+  //*          |-----SQL------|
   //?Q12 FIRST_NAME Ascending and DEPARTMENT Descending.
   //   knex("Worker")
   //     .orderBy([
@@ -71,50 +82,60 @@ router.get("/test", async (req, res) => {
   //     ])
   //     .debug(true)
   //     .then((data) => res.send(data));
+  //*          |-----SQL------|
   //?Q13 print details for Workers with the first name as “Vipul” and “Satish” from Worker table.
   //   knex("Worker")
   //     .where("FIRST_NAME", "=", "Vipul")
   //     .orWhere("FIRST_NAME", "=", "Satish")
   //     .debug(true)
   //     .then((data) => res.send(data));
+  //*          |-----SQL------|
   //?Q14 excluding first name as “Vipul” and “Satish” from Worker table.
   //   knex("Worker")
   //     .where("FIRST_NAME", "!=", "Vipul")
   //     .andWhere("FIRST_NAME", "!=", "Satish")
   //     .debug(true)
   //     .then((data) => res.send(data));
+  //*          |-----SQL------|
   //?Q15 details of Workers with DEPARTMENT name as “Admin*”.
   //   knex("Worker")
   //     .where("DEPARTMENT", "=", "Admin")
   //     .debug(true)
   //     .then((data) => res.send(data));
+  //*          |-----SQL------|
   //?Q-16. details of the Workers whose FIRST_NAME contains ‘a’.
   //   knex("Worker")
   //     .whereRaw("FIRST_NAME like '%a%' ")
   //     .then((data) => res.send(data));
+  //*          |-----SQL------|
   //?Q-17 FIRST_NAME ends with ‘a’.
   //   knex("Worker")
   //     .whereRaw("FIRST_NAME like '%a' ")
   //     .then((data) => res.send(data));
+  //*          |-----SQL------|
   //?Q-18. Workers whose FIRST_NAME ends with ‘h’ and contains six alphabets.
   //   knex("Worker")
   //     .whereRaw("FIRST_NAME like '%a' ")
   //     .andWhere(knex.raw("LENGTH(FIRST_NAME) > 6"))
   //     .then((data) => res.send(data));
+  //*          |-----SQL------|
   //?Q-19 Workers whose SALARY lies between 100000 and 500000.
   //   knex("Worker")
   //     .whereBetween("SALARY", [100000, 500000])
   //     .then((data) => res.send(data));
+  //*          |-----SQL------|
   //?: Q-20. Workers who have joined in Feb’2014.
   //   knex("Worker")
   //     .whereRaw("MONTH(JOINING_DATE) = 2")
   //     .then((data) => res.send(data));
+  //*          |-----SQL------|
   //? Q-21. count of employees working in the department ‘Admin’.
   //   knex("Worker")
   //     .count("DEPARTMENT")
   //     .where("DEPARTMENT", "=", "Admin")
   //     .debug(true)
   //     .then((data) => res.send(data));
+  //*          |-----SQL------|
   //?Q-22. worker full names with salaries >= 50000 and <= 100000.
   //   knex("Worker")
   //     .select(
